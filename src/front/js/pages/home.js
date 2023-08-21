@@ -1,26 +1,31 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-
+    !store.hiddenLogout ? actions.changeLogoutButton(true): null 
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
+		<div className="text-center container mt-5">
+			<h1>Authentication system with Python Flask and React.js</h1>
 			<p>
-				<img src={rigoImageUrl} />
+				<img src="https://cdn.pixabay.com/photo/2017/01/16/20/22/bubbles-1985152_640.png"/>
 			</p>
-			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
+
+			<div className="links d-flex justify-content-center me-3">
+				<Link to={"/LogIn/"}>
+					<p className="me-3">
+						LogIn
+					</p>
+				</Link>
+
+				<Link to={"/SignUp/"}>
+					<p className="me-3">
+						SignUp
+					</p>
+				</Link>
 			</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://start.4geeksacademy.com/starters/react-flask">
-					Read documentation
-				</a>
-			</p>
 		</div>
 	);
 };
